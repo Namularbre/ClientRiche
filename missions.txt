@@ -7,3 +7,5 @@ le nombre de produit qu'on peut faire par mois, l'objectif mensuel,
 
 Afficher les parcelles par spécialiter
 graphique de ce que l'on a vendu par mois 
+
+clef de l'API : AIzaSyDBb-LW0E0EktYw4G7Bb-WxgURITxqUKwE

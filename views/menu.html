@@ -35,6 +35,9 @@
             width: 65vw;
             height: 100%;
         }
+        #afficherFormulaire{
+            margin: 1%;
+        }
     </style>
 </head>
 
@@ -48,7 +51,7 @@
         </form>
         <input type="button" id="afficherFormulaire" value="Ajouter une parcelle">
         <div>
-            <ul>
+            <ul id="listeParcelle">
                 <li>
                     <h2>8 rue Jacques Thenard Limoges</h2>
                     <p>Produit</p>
@@ -88,9 +91,9 @@
 
         geocoder.geocode({address : "9 rue Dalloz Limoges"}, function (result,status){
             if (status == google.maps.GeocoderStatus.OK) {
-                console.info("salut");
+                
                 if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
-                    console.info("coucou");
+                    
                     map.setCenter(result[0].geometry.location);
                 }
             }
@@ -118,17 +121,33 @@
         })
     });
 
-    let btnAjoutParcelle = document.getElementById("afficherFormulaire");
-    btnAjoutParcelle.addEventListener("click",function (event) {
+    let btnAfficherFormAjoutParcelle = document.getElementById("afficherFormulaire");
+    btnAfficherFormAjoutParcelle.addEventListener("click",function (event) {
         if (formAjoutParcelle.style.display == "block") {
             formAjoutParcelle.style.display = "none";
+            btnAfficherFormAjoutParcelle.setAttribute('value', "Ajouter parcelle");
         } else {
             formAjoutParcelle.style.display = "block";
+            btnAfficherFormAjoutParcelle.setAttribute('value', "cacher formulaire");
         }
         
     });
 
     let formAjoutParcelle = document.getElementById("formAjoutParcelle");
+    let btnAjoutParcelle = document.getElementById("ajouterParcelle");
+    btnAjoutParcelle.addEventListener("click", function (event) {
+        let nouvelleAdresse = document.getElementById("adresse").value;
+        let listeParcelle = document.getElementById("listeParcelle");
+        let nouveauLi = document.createElement('li');
+        let baliseAdresse = document.createElement('h2');
+        baliseAdresse.innerText = nouvelleAdresse;
+        nouveauLi.append(baliseAdresse);
+        listeParcelle.append(nouveauLi);
+        
+        listeParcelle.addEventListener("click", function (event) {
+            moveMap(nouvelleAdresse);
+        });
+    })
 
 </script>
 </html>

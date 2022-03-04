@@ -18,24 +18,31 @@
             display: flex;
             overflow: hidden;
         }
-        #formAjoutParcelle{
+
+        #formAjoutParcelle {
             display: none;
         }
+
         #sidebar {
             width: 35vw;
         }
-        #sidebar h2, #sidebar p{
+
+        #sidebar h2,
+        #sidebar p {
             cursor: pointer;
             margin: 2px 0px;
         }
-        #sidebar h2:hover{
+
+        #sidebar h2:hover {
             text-decoration: underline;
         }
+
         #map {
             width: 65vw;
             height: 100%;
         }
-        #afficherFormulaire{
+
+        #afficherFormulaire {
             margin: 1%;
         }
     </style>
@@ -86,28 +93,47 @@
     function initMap() {
         geocoder = new google.maps.Geocoder();
 
-        map = new google.maps.Map(document.getElementById('map'), { 
-            center: {lat : 100, lng: 1},
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 100, lng: 1 },
             zoom: 6,
         });
 
-        geocoder.geocode({address : "9 rue Dalloz Limoges"}, function (result,status){
+        geocoder.geocode({ address: "9 rue Dalloz Limoges" }, function (result, status) {
             if (status == google.maps.GeocoderStatus.OK) {
-                
+
                 if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
-                    
+
                     map.setCenter(result[0].geometry.location);
                 }
             }
         });
 
-        
+        document.querySelectorAll('h2').forEach((address) => {
+            geocoder.geocode({ address: address.innerText }, function (result, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+                        new google.maps.Marker({
+                            position: {
+                                lat : result[0].geometry.location.lat(),
+                                lng : result[0].geometry.location.lng()
+                            },
+                            map,
+                            title: adresse.innerText,
+                        });
+                    }
+                }
+            });
+        })
+
+
+
+
     }
 
     function moveMap(address) {
         geocoder = new google.maps.Geocoder();
 
-        geocoder.geocode({address}, function (result,status){
+        geocoder.geocode({ address }, function (result, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
                     map.setCenter(result[0].geometry.location);
@@ -116,37 +142,28 @@
             }
         });
 
-        document.querySelectorAll('li>h2').forEach((adresse) => {
-            console.log(getAdresse(adresse.innerText));
-            new google.maps.Marker({
-                position : getAdresse(adresse.innerText),
-                map,
-                title : adresse.innerText,
-            })
-        })
     }
 
-    function getAdresse(address){
-        geocoder.geocode({address}, function (result,status){
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
-                    return result[0].geometry.location;
-                }
-            }
-        });
-        return null;
+    function getAdresse(address) {
+        geocoder = new google.maps.Geocoder();
+        let resultat = {
+            lat: null,
+            lng: null,
+        };
+
+        console.log(resultat);
+        return resultat;
     }
 
     let addresses = document.querySelectorAll('h2');
     addresses.forEach((adresse) => {
-        
         adresse.addEventListener("click", function (event) {
             moveMap(adresse.innerHTML);
         })
     });
 
     let btnAfficherFormAjoutParcelle = document.getElementById("afficherFormulaire");
-    btnAfficherFormAjoutParcelle.addEventListener("click",function (event) {
+    btnAfficherFormAjoutParcelle.addEventListener("click", function (event) {
         if (formAjoutParcelle.style.display == "block") {
             formAjoutParcelle.style.display = "none";
             btnAfficherFormAjoutParcelle.setAttribute('value', "Ajouter parcelle");
@@ -154,7 +171,7 @@
             formAjoutParcelle.style.display = "block";
             btnAfficherFormAjoutParcelle.setAttribute('value', "cacher formulaire");
         }
-        
+
     });
 
     let formAjoutParcelle = document.getElementById("formAjoutParcelle");
@@ -168,7 +185,7 @@
         baliseAdresse.innerText = nouvelleAdresse;
         nouveauLi.append(baliseAdresse);
         //listeParcelle.append(nouveauLi);
-        
+
         listeParcelle.addEventListener("click", function (event) {
             moveMap(nouvelleAdresse);
         });
@@ -181,4 +198,5 @@
     })
 
 </script>
+
 </html>

@@ -1,0 +1,546 @@
+{
+    "statut": true,
+    "resultat": [
+        {
+            "nom": "Commande",
+            "colonnes": [
+                {
+                    "nom": "id",
+                    "type": "integer"
+                },
+                {
+                    "nom": "date",
+                    "type": "datetime"
+                },
+                {
+                    "nom": "date_livraison_souhaitee",
+                    "type": "datetime"
+                },
+                {
+                    "nom": "client"
+                },
+                {
+                    "nom": "rayon"
+                },
+                {
+                    "nom": "statut"
+                },
+                {
+                    "nom": "adresseLivraison"
+                }
+            ],
+            "index": [
+                {
+                    "id": {
+                        "primary": true
+                    }
+                },
+                {
+                    "client": {
+                        "foreign": true,
+                        "outTable": "Client",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                },
+                {
+                    "rayon": {
+                        "foreign": true,
+                        "outTable": "CategorieProduit",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                },
+                {
+                    "statut": {
+                        "foreign": true,
+                        "outTable": "StatutCommande",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                },
+                {
+                    "adresseLivraison": {
+                        "foreign": true,
+                        "outTable": "Adresse",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                }
+            ]
+        },
+        {
+            "nom": "CategoriePersonnel",
+            "colonnes": [
+                {
+                    "nom": "id",
+                    "type": "integer"
+                },
+                {
+                    "nom": "libelle",
+                    "type": "string",
+                    "longueur": 50
+                },
+                {
+                    "nom": "is_admin",
+                    "type": "boolean"
+                },
+                {
+                    "nom": "is_livreur",
+                    "type": "boolean"
+                }
+            ],
+            "index": [
+                {
+                    "id": {
+                        "primary": true
+                    }
+                }
+            ]
+        },
+        {
+            "nom": "CategorieProduit",
+            "colonnes": [
+                {
+                    "nom": "image",
+                    "type": "string",
+                    "longueur": 50
+                },
+                {
+                    "nom": "id",
+                    "type": "integer"
+                },
+                {
+                    "nom": "libelle",
+                    "type": "string",
+                    "longueur": 50
+                },
+                {
+                    "nom": "description",
+                    "type": "text"
+                },
+                {
+                    "nom": "creation_agent_id",
+                    "type": "string",
+                    "longueur": 20
+                },
+                {
+                    "nom": "creation_date",
+                    "type": "datetime"
+                },
+                {
+                    "nom": "modification_agent_id",
+                    "type": "string",
+                    "longueur": 20
+                },
+                {
+                    "nom": "modification_date",
+                    "type": "datetime"
+                }
+            ],
+            "index": [
+                {
+                    "id": {
+                        "primary": true
+                    }
+                }
+            ]
+        },
+        {
+            "nom": "Produit",
+            "colonnes": [
+                {
+                    "nom": "id",
+                    "type": "integer"
+                },
+                {
+                    "nom": "libelle",
+                    "type": "string",
+                    "longueur": 255
+                },
+                {
+                    "nom": "reference",
+                    "type": "string",
+                    "longueur": 10
+                },
+                {
+                    "nom": "image",
+                    "type": "text"
+                },
+                {
+                    "nom": "prix_vente",
+                    "type": "float"
+                },
+                {
+                    "nom": "prix_achat",
+                    "type": "float"
+                },
+                {
+                    "nom": "self_stock",
+                    "type": "integer"
+                },
+                {
+                    "nom": "categorie"
+                },
+                {
+                    "nom": "fournisseur"
+                }
+            ],
+            "index": [
+                {
+                    "id": {
+                        "primary": true
+                    }
+                },
+                {
+                    "categorie": {
+                        "foreign": true,
+                        "outTable": "CategorieProduit",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                },
+                {
+                    "fournisseur": {
+                        "foreign": true,
+                        "outTable": "Fournisseur",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                }
+            ]
+        },
+        {
+            "nom": "Fournisseur",
+            "colonnes": [
+                {
+                    "nom": "id",
+                    "type": "integer"
+                },
+                {
+                    "nom": "raisonsociale",
+                    "type": "string",
+                    "longueur": 50
+                },
+                {
+                    "nom": "facturationAdresse"
+                }
+            ],
+            "index": [
+                {
+                    "id": {
+                        "primary": true
+                    }
+                },
+                {
+                    "facturationAdresse": {
+                        "foreign": true,
+                        "outTable": "Adresse",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                }
+            ]
+        },
+        {
+            "nom": "Client",
+            "colonnes": [
+                {
+                    "nom": "id",
+                    "type": "integer"
+                },
+                {
+                    "nom": "raisonsociale",
+                    "type": "string",
+                    "longueur": 50
+                },
+                {
+                    "nom": "facturationAdresse"
+                }
+            ],
+            "index": [
+                {
+                    "id": {
+                        "primary": true
+                    }
+                },
+                {
+                    "facturationAdresse": {
+                        "foreign": true,
+                        "outTable": "Adresse",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                }
+            ]
+        },
+        {
+            "nom": "Personnel",
+            "colonnes": [
+                {
+                    "nom": "id",
+                    "type": "integer"
+                },
+                {
+                    "nom": "prenom",
+                    "type": "string",
+                    "longueur": 50
+                },
+                {
+                    "nom": "nom",
+                    "type": "string",
+                    "longueur": 50
+                },
+                {
+                    "nom": "categorie"
+                },
+                {
+                    "nom": "specialite"
+                }
+            ],
+            "index": [
+                {
+                    "id": {
+                        "primary": true
+                    }
+                },
+                {
+                    "categorie": {
+                        "foreign": true,
+                        "outTable": "CategoriePersonnel",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                },
+                {
+                    "specialite": {
+                        "foreign": true,
+                        "outTable": "CategorieProduit",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                }
+            ]
+        },
+        {
+            "nom": "Champ",
+            "colonnes": [
+                {
+                    "nom": "id",
+                    "type": "integer"
+                },
+                {
+                    "nom": "libelle",
+                    "type": "string",
+                    "longueur": 50
+                },
+                {
+                    "nom": "description",
+                    "type": "text"
+                },
+                {
+                    "nom": "creation_agent_id",
+                    "type": "string",
+                    "longueur": 20
+                },
+                {
+                    "nom": "creation_date",
+                    "type": "datetime"
+                },
+                {
+                    "nom": "modification_agent_id",
+                    "type": "string",
+                    "longueur": 20
+                },
+                {
+                    "nom": "modification_date",
+                    "type": "datetime"
+                },
+                {
+                    "nom": "parcelle"
+                }
+            ],
+            "index": [
+                {
+                    "id": {
+                        "primary": true
+                    }
+                },
+                {
+                    "parcelle": {
+                        "foreign": true,
+                        "outTable": "Parcelle",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                }
+            ]
+        },
+        {
+            "nom": "Parcelle",
+            "colonnes": [
+                {
+                    "nom": "id",
+                    "type": "integer"
+                },
+                {
+                    "nom": "libelle",
+                    "type": "string",
+                    "longueur": 50
+                },
+                {
+                    "nom": "description",
+                    "type": "text"
+                },
+                {
+                    "nom": "creation_agent_id",
+                    "type": "string",
+                    "longueur": 20
+                },
+                {
+                    "nom": "creation_date",
+                    "type": "datetime"
+                },
+                {
+                    "nom": "modification_agent_id",
+                    "type": "string",
+                    "longueur": 20
+                },
+                {
+                    "nom": "modification_date",
+                    "type": "datetime"
+                }
+            ],
+            "index": [
+                {
+                    "id": {
+                        "primary": true
+                    }
+                }
+            ]
+        },
+        {
+            "nom": "Exploitant",
+            "colonnes": [
+                {
+                    "nom": "id",
+                    "type": "integer"
+                },
+                {
+                    "nom": "raisonsociale",
+                    "type": "string",
+                    "longueur": 50
+                },
+                {
+                    "nom": "facturationAdresse"
+                }
+            ],
+            "index": [
+                {
+                    "id": {
+                        "primary": true
+                    }
+                },
+                {
+                    "facturationAdresse": {
+                        "foreign": true,
+                        "outTable": "Adresse",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                }
+            ]
+        },
+        {
+            "nom": "PrevisionProductionMois",
+            "colonnes": [
+                {
+                    "nom": "id",
+                    "type": "integer"
+                },
+                {
+                    "nom": "qte",
+                    "type": "float"
+                },
+                {
+                    "nom": "livraison"
+                },
+                {
+                    "nom": "produit"
+                }
+            ],
+            "index": [
+                {
+                    "id": {
+                        "primary": true
+                    }
+                },
+                {
+                    "livraison": {
+                        "foreign": true,
+                        "outTable": "PrevisionProduction",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                },
+                {
+                    "produit": {
+                        "foreign": true,
+                        "outTable": "Produit",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                }
+            ]
+        },
+        {
+            "nom": "PrevisionProduction",
+            "colonnes": [
+                {
+                    "nom": "id",
+                    "type": "integer"
+                },
+                {
+                    "nom": "campagne"
+                },
+                {
+                    "nom": "champ"
+                },
+                {
+                    "nom": "produit"
+                }
+            ],
+            "index": [
+                {
+                    "id": {
+                        "primary": true
+                    }
+                },
+                {
+                    "campagne": {
+                        "foreign": true,
+                        "outTable": "Campagne",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                },
+                {
+                    "champ": {
+                        "foreign": true,
+                        "outTable": "Champ",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                },
+                {
+                    "produit": {
+                        "foreign": true,
+                        "outTable": "Produit",
+                        "outKey": "id",
+                        "type": "ManyToOne"
+                    }
+                }
+            ]
+        }
+    ]
+}

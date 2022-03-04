@@ -47,6 +47,8 @@
         <form method="post" id="formAjoutParcelle">
             <label for="adresse">Adresse</label>
             <input type="text" id="adresse" placeholder="saisir adresse">
+            <label for="produit">Adresse</label>
+            <input type="text" id="produit" placeholder="saisir produit">
             <input type="button" id="ajouterParcelle" value="Creer">
         </form>
         <input type="button" id="afficherFormulaire" value="Ajouter une parcelle">
@@ -98,6 +100,8 @@
                 }
             }
         });
+
+        
     }
 
     function moveMap(address) {
@@ -111,6 +115,26 @@
                 }
             }
         });
+
+        document.querySelectorAll('li>h2').forEach((adresse) => {
+            console.log(getAdresse(adresse.innerText));
+            new google.maps.Marker({
+                position : getAdresse(adresse.innerText),
+                map,
+                title : adresse.innerText,
+            })
+        })
+    }
+
+    function getAdresse(address){
+        geocoder.geocode({address}, function (result,status){
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+                    return result[0].geometry.location;
+                }
+            }
+        });
+        return null;
     }
 
     let addresses = document.querySelectorAll('h2');
@@ -136,17 +160,24 @@
     let formAjoutParcelle = document.getElementById("formAjoutParcelle");
     let btnAjoutParcelle = document.getElementById("ajouterParcelle");
     btnAjoutParcelle.addEventListener("click", function (event) {
+        /*Creation de l'adresse*/
         let nouvelleAdresse = document.getElementById("adresse").value;
         let listeParcelle = document.getElementById("listeParcelle");
         let nouveauLi = document.createElement('li');
         let baliseAdresse = document.createElement('h2');
         baliseAdresse.innerText = nouvelleAdresse;
         nouveauLi.append(baliseAdresse);
-        listeParcelle.append(nouveauLi);
+        //listeParcelle.append(nouveauLi);
         
         listeParcelle.addEventListener("click", function (event) {
             moveMap(nouvelleAdresse);
         });
+        /*Creation de l'affichage du produit*/
+        let nouveauProduit = document.getElementById("produit").value;
+        let nouveauP = document.createElement('p');
+        nouveauP.innerText = nouveauProduit;
+        nouveauLi.append(nouveauP);
+        listeParcelle.append(nouveauLi);
     })
 
 </script>

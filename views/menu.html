@@ -60,7 +60,7 @@
         </form>
         <input type="button" id="afficherFormulaire" value="Ajouter une parcelle">
         <div>
-            <ul id="listeParcelle">
+            <ol id="listeParcelle">
                 <li>
                     <h2>8 rue Jacques Thenard Limoges</h2>
                     <p>Produit</p>
@@ -81,7 +81,7 @@
                     <p>Produit</p>
                     <p>ProductionParMois</p>
                 </li>
-            </ul>
+            </ol>
         </div>
 
     </div>
@@ -108,7 +108,7 @@
             }
         });
 
-        document.querySelectorAll('h2').forEach((address) => {
+        document.querySelectorAll('h2').forEach((address,i) => {
             geocoder.geocode({ address: address.innerText }, function (result, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
@@ -119,6 +119,7 @@
                             },
                             map,
                             title: adresse.innerText,
+                            label: (i + 1).toString(),
                         });
                     }
                 }

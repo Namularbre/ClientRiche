@@ -11,10 +11,9 @@
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="./script/connecterUtilisateur.js"></script>
     <!-- CSS -->
-    <link href="style/reset.css" rel="stylesheet">
-    <link href="style/style.css" rel="stylesheet">
-    <link href="../style/reset.css" rel="stylesheet">
-    <link href="../style/menu.css" rel="stylesheet">
+    <link href="style/reset.css" rel="stylesheet" type="text/css">
+    <link href="style/style.css" rel="stylesheet" type="text/css">
+    <link href="style/menu.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -27,29 +26,25 @@
             <input type="password" id="code" placeholder="Entrez votre mot de passe">
             <input type="button" id="btnvalider" value="Se connecter">
         </form>
-        <p id="affichageErr"></p>
     </div>
     <script>
         $(document).connecterUtilisateur({
             container: "form",
             success: () => {
                $("#ConnectionView").hide();
-               $.get( "./views/menu.html", function( data ) {
-                    $( ".result" ).html( data );
-                    alert( "Load was performed." );
-                });
+               //On charge la vue du menu si l'utilisateur est reconnu
+                allerDansMenu();
             },
             error: () => {
-                console.error("oooooh")
-                $('#affichageErr').append("Votre mot de passe ou votre login est incorrect");
+                alert("Votre identifiant ou votre mot de passe est inconnu");
             }
         });
 
         function allerDansMenu() {
-            
+            $.get( "./views/menu.html", function( data ) {
+                $( "body" ).html( data );
+            });
         }
-
-       
     </script>
 </body>
 </html>

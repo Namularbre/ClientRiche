@@ -32,12 +32,20 @@
             container: "form",
             success: () => {
                $("#ConnectionView").hide();
+               $.get( "./views/menu.html", function( data ) {
+                    $( ".result" ).html( data );
+                    alert( "Load was performed." );
+                });
             },
             error: () => {
                 console.error("oooooh")
                 $('#affichageErr').append("Votre mot de passe ou votre login est incorrect");
             }
         });
+
+        function allerDansMenu() {
+            
+        }
 
        
     </script>

@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu parcielles</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBb-LW0E0EktYw4G7Bb-WxgURITxqUKwE&callback=initMap"></script>
     <link href="../style/reset.css" rel="stylesheet">
     <link href="../style/menu.css" rel="stylesheet">
-</head>
-
-<body>
+<div id="menu">
     <div id="sidebar">
         <h1>Menu parcelles</h1>
         <form method="post" id="formAjoutParcelle">
@@ -31,7 +21,7 @@
 
     </div>
     <div id="map"></div>
-</body>
+</div>
 <script>
     let map;
     let geocoder;

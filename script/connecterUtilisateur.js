@@ -12,7 +12,6 @@ $.fn.connecterUtilisateur = function ({ container, user, success, error }) {
       let data = $.getJSON("http://vps.e-mingo.net/coopagri/app/index.php?c=api&n=CompteIndividu&a=get", (json) => {
         console.log(json)
       });
-
       console.log(data);
 
 

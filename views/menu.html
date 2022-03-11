@@ -3,6 +3,7 @@
 <div id="menu">
     <div id="sidebar">
         <h1>Menu parcelles</h1>
+        
         <form method="post" id="formAjoutParcelle">
             <label for="adresse">Adresse</label>
             <input type="text" id="adresse" placeholder="saisir adresse">
@@ -67,7 +68,7 @@
             if (status == google.maps.GeocoderStatus.OK) {
                 if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
                     map.setCenter(result[0].geometry.location);
-                    map.setZoom(16)
+                    map.setZoom(16);
                 }
             }
         });
@@ -99,6 +100,7 @@
 
     let btnAfficherFormAjoutParcelle = $("#afficherFormulaire");
     btnAfficherFormAjoutParcelle.on('click', function () {
+        console.log(btnAfficherFormAjoutParcelle.val());
         btnAfficherFormAjoutParcelle.val(changerTexteBoutonParcelle());
         $("#formAjoutParcelle").toggle();
     })

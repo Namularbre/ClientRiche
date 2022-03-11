@@ -1,5 +1,5 @@
 (function($){
-    $fn.connectUser = function ({container,user,success,error}) {
+    $fn.connecterUtilisateur = function ({container,user,success,error}) {
         //1. chopper info user
         //2. Verifier info dans "BDD"
         //3. Si existe => on redirige (http.get(mapage)) Sinon => Msg d'erreur

@@ -8,14 +8,11 @@ $.fn.connecterUtilisateur = function ({ container, user, success, error }) {
       //3. Si existe => on redirige (http.get(mapage)) Sinon => Msg d'erreur
       let nom = $(container + ">#nom");
       let code = $(container + ">#code");
-        console.log("test")
-      let data = $.getJSON("http://vps.e-mingo.net/coopagri/app/index.php?c=api&n=CompteIndividu&a=get", (json) => {
+      //On va chercher l'utilisateur dans l'API
+      let data = $.getJSON('http://vps.e-mingo.net/coopagri/app/index.php?c=api&x=1&n=CompteIndividu&where=login|' + nom, (json) => {
         console.log(json)
       });
       console.log(data);
-
-
-      //chercher dans données
       return isLogin;
     }
 

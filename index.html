@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion exploitant</title>
-    <script href="script/jquery.js"></script>
-    <script href="script/connecterUtilisateur.js"></script>
+    <script href="./script/jquery.js"></script>
     <link href="style/connectionUtilisateur.css">
     <link href="style/reset.css">
     <style>
@@ -39,7 +38,15 @@
         <input type="text" id="nom" placeholder="Entrez votre nom">
         <label for="code">Mot de passe</label>
         <input type="password" id="code" placeholder="Entrez votre mot de passe">
-        <input type="submit" id="btnvalider" value="Se connecter" onclick="connecterUtilisateur()">
+        <input type="submit" id="btnvalider" value="Se connecter">
+        
     </form>
+    <script>
+        $(document).connecterUtilisateur({
+            container: "form",
+            success : () => console.log("yeah"),
+            error : () => console.error("oooooh")
+        });
+    </script>
 </body>
 </html>

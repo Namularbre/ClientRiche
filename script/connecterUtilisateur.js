@@ -16,16 +16,13 @@ $.fn.connecterUtilisateur = function ({ container, user, success, error }) {
     
     //let url = 'http://vps.e-mingo.net/coopagri/app/index.php?c=api&n=Commande&x=1'
     let data = $.ajax({
-      dataType: "jsonp",
       url: url,
       crossDomain: true,
       success: function(json) {
-        console.log(json);
-        json != 0 ? success() : error();
+          json?.data.length != 0 ? success() : error();
       },
       error: function(t,e, l) {
-          console.log(t,e,l)
-          // error()
+          error()
       },
     });
   }

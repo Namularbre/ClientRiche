@@ -31,12 +31,11 @@
         $(document).connecterUtilisateur({
             container: "form",
             success: () => {
-                console.log("yeah")
-                $(document).remove("#connectionUtilisateur");
+               $("#ConnectionView").hide();
             },
             error: () => {
                 console.error("oooooh")
-                $('#affichageErr').text = "Vous n'etes pas reconnu dans l'application";
+                $('#affichageErr').append("Votre mot de passe ou votre login est incorrect");
             }
         });
 

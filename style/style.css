@@ -40,3 +40,8 @@ form{
     width: 40%;
     margin-top: 1%;
 }
+
+#affichageErr{
+    color: red;
+    text-align: center;
+}

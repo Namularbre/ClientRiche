@@ -1,0 +1,33 @@
+html,
+        body {
+            height: 100%;
+            display: flex;
+            overflow: hidden;
+        }
+
+        #formAjoutParcelle {
+            display: none;
+        }
+
+        #sidebar {
+            width: 35vw;
+        }
+
+        #sidebar h2,
+        #sidebar p {
+            cursor: pointer;
+            margin: 2px 0px;
+        }
+
+        #sidebar h2:hover {
+            text-decoration: underline;
+        }
+
+        #map {
+            width: 65vw;
+            height: 100%;
+        }
+
+        #afficherFormulaire {
+            margin: 1%;
+        }

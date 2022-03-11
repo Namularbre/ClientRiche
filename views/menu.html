@@ -22,7 +22,7 @@
 <script>
     let map;
     let geocoder;
-    
+
     function initMap() {
         geocoder = new google.maps.Geocoder();
 
@@ -74,25 +74,44 @@
 
     }
 
-    function getAdresse(address) {
+    function getAdresse() {
         geocoder = new google.maps.Geocoder();
         let resultat = {
             lat: null,
             lng: null,
         };
-
-        console.log(resultat);
         return resultat;
     }
 
-    let addresses = document.querySelectorAll('h2');
-    addresses.forEach((adresse) => {
+    let adresses = $("h2");
+    adresses.each((index, adresse) => adresse.on('click', function (event) {
+        console.log(index);
+        moveMap(adresse.text());
+    }))
+
+    /*let adresse = document.querySelectorAll('h2');
+
+    adresses.forEach((adresse) => {
         adresse.addEventListener("click", function (event) {
             moveMap(adresse.innerHTML);
         })
-    });
+    });*/
 
-    let btnAfficherFormAjoutParcelle = document.getElementById("afficherFormulaire");
+    let btnAfficherFormAjoutParcelle = $("#afficherFormulaire");
+    btnAfficherFormAjoutParcelle.on('click', function () {
+        btnAfficherFormAjoutParcelle.val(changerTexteBoutonParcelle());
+        $("#formAjoutParcelle").toggle();
+    })
+
+    function changerTexteBoutonParcelle() {
+        if (btnAfficherFormAjoutParcelle.val("Cacher parcelle")) {
+            return "Ajouter une parcelle";
+        } else {
+            return "Cacher parcelle";
+        }
+    }
+
+    /*let btnAfficherFormAjoutParcelle = document.getElementById("afficherFormulaire");
     btnAfficherFormAjoutParcelle.addEventListener("click", function (event) {
         if (formAjoutParcelle.style.display == "block") {
             formAjoutParcelle.style.display = "none";
@@ -102,7 +121,7 @@
             btnAfficherFormAjoutParcelle.setAttribute('value', "cacher formulaire");
         }
 
-    });
+    });*/
 
     let formAjoutParcelle = document.getElementById("formAjoutParcelle");
     let btnAjoutParcelle = document.getElementById("ajouterParcelle");

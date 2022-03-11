@@ -1,4 +1,4 @@
-$.fn.initMap = function ({container, user, success, error}){
+$.fn.initMap = function (){
     //geocoder et map son déclarer en dehors de tout module, dans la vue du menu (/views/menu.html)
     geocoder = new google.maps.Geocoder();
 

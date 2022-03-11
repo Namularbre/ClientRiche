@@ -1,4 +1,4 @@
-$.fn.moveMap = function (container, user, success, error) {
+$.fn.moveMap = function (address) {
     //geocoder et map son déclarer en dehors de tout module, dans la vue du menu (/views/menu.html)
     geocoder = new google.maps.Geocoder();
 

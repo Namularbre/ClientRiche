@@ -9,21 +9,24 @@ $.fn.connecterUtilisateur = function ({ container, user, success, error }) {
     let pass = $(container + ">#code").val();
     //On va chercher l'utilisateur dans l'API
     let url = `http://vps.e-mingo.net/coopagri/app/index.php?c=api&o=auth&name=${login}&val=${pass}`
+    
+    
+    
+    
+    
+    //let url = 'http://vps.e-mingo.net/coopagri/app/index.php?c=api&n=Commande&x=1'
     let data = $.ajax({
       dataType: "jsonp",
       url: url,
       crossDomain: true,
       success: function(json) {
-        console.log("test", json);
-        // json.length != 0 ? success() : error();
+        console.log(json);
+        json != 0 ? success() : error();
       },
       error: function(t,e, l) {
           console.log(t,e,l)
           // error()
       },
-      complete: function(x) {
-        console.log(x)
-      }
     });
   }
 };

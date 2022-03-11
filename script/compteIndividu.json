@@ -1,0 +1,30 @@
+{
+    "statut": true,
+    "resultat": [
+        {
+            "nom": "CompteIndividu",
+            "colonnes": [
+                {
+                    "nom": "id",
+                    "type": "integer"
+                },
+                {
+                    "nom": "login",
+                    "type": "string",
+                    "longueur": 10
+                },
+                {
+                    "nom": "pass",
+                    "type": "text"
+                }
+            ],
+            "index": [
+                {
+                    "id": {
+                        "primary": true
+                    }
+                }
+            ]
+        }
+    ]
+}

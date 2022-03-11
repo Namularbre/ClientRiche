@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion exploitant</title>
     <script href="script/jquery.js"></script>
+    <script href="script/connecterUtilisateur.js"></script>
     <link href="style/connectionUtilisateur.css">
     <link href="style/reset.css">
     <style>
@@ -34,14 +35,14 @@
 </head>
 <body>
     <h1>Connection</h1>
-    <form method="post" id="connectionUtilisateur">
+    <form id="connectionUtilisateur">
         <label for="nom">Nom</label>
         <input type="text" id="nom" placeholder="Entrez votre nom">
         <label for="prenom">Prenom</label>
         <input type="text" id="prenom" placeholder="Entrez votre prenom">
         <label for="code">Mot de passe</label>
         <input type="password" id="code" placeholder="Entrez votre mot de passe">
-        <input type="submit" id="btnvalider" value="Se connecter" onclick="connectUser()">
+        <input type="submit" id="btnvalider" value="Se connecter" onclick="connectUtilisateur()">
     </form>
 </body>
 </html>

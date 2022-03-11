@@ -31,7 +31,7 @@
         $(document).connecterUtilisateur({
             container: "form",
             success: () => {
-               $("#ConnectionView").hide();
+               $("#ConnectionView").remove();
                //On charge la vue du menu si l'utilisateur est reconnu
                 allerDansMenu();
             },

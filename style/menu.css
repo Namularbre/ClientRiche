@@ -1,9 +1,7 @@
 html,
         #menu>h1{
             padding: 2%;
-
         }
-
         #menu>#formAjoutParcelle {
             display: none;
             background-color: lightblue;
@@ -12,39 +10,34 @@ html,
             padding: 2%;
             /*width: 70%;*/
         }
-
-        #sidebar {
+        #menu>#sidebar {
             width: 35vw;
         }
-
-        #sidebar h2,
-        #sidebar p {
+        #menu>#sidebar h2,
+        #menu>#sidebar p {
             cursor: pointer;
             margin: 2px 0px;
         }
-
-        #sidebar h2:hover {
+        #menu>#sidebar #menu>h2:hover {
             text-decoration: underline;
         }
-
-        #map {
+        #menu>#map {
             width: 65vw;
             height: 100%;
         }
-
-        #afficherFormulaire {
+        #menu>#afficherFormulaire {
             margin: 1%;
         }
-        h2{
+        #menu>h2{
             font-size: 25px;
             font-weight: bold;
             margin: 2%;
             padding: 1% 1%;
         }
-        h2:hover{
+        #menu>h2:hover{
             text-decoration: underline;
         }
-        li>p{
+        #menu>li>p{
             margin: 2%;
             padding: 2%;
         }

@@ -45,3 +45,8 @@ form{
     color: red;
     text-align: center;
 }
+
+#menu{
+    width: 100%;
+    height: auto;
+}

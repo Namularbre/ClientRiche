@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,11 +14,12 @@
     <link href="style/connectionUtilisateur.css">
     <link href="style/reset.css">
     <style>
-        body{
+        body {
             display: flex;
             justify-content: center;
         }
-        #connectionUtilisateur{
+
+        #connectionUtilisateur {
             display: flex;
             flex-direction: column;
             width: 70%;
@@ -25,16 +27,19 @@
             margin: 5%;
             padding: 2%;
         }
-        #connectionUtilisateur>label{
+
+        #connectionUtilisateur>label {
             font-weight: 20px;
             font-size: 20px;
         }
-        #connectionUtilisateur>#btnvalider{
+
+        #connectionUtilisateur>#btnvalider {
             width: 40%;
             margin-top: 1%;
         }
     </style>
 </head>
+
 <body>
     <h1>Connection</h1>
     <form id="connectionUtilisateur">
@@ -43,17 +48,16 @@
         <label for="code">Mot de passe</label>
         <input type="password" id="code" placeholder="Entrez votre mot de passe">
         <input type="button" id="btnvalider" value="Se connecter">
-        
+
     </form>
     <script>
-
-            
-            $(document).connecterUtilisateur({
-                container: "form",
-                success : () => console.log("yeah"),
-                error : () => console.error("oooooh")
-            });
+        $(document).connecterUtilisateur({
+            container: "form",
+            success: () => console.log("yeah"),
+            error: () => console.error("oooooh")
+        });
 
     </script>
 </body>
+
 </html>

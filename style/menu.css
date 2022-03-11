@@ -1,16 +1,10 @@
 html,
-        body {
-            height: 100%;
-            display: flex;
-            overflow: hidden;
-        }
-
-        h1{
+        #menu>h1{
             padding: 2%;
 
         }
 
-        #formAjoutParcelle {
+        #menu>#formAjoutParcelle {
             display: none;
             background-color: lightblue;
             justify-content: center;

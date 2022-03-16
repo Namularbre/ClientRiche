@@ -47,6 +47,6 @@ form{
 }
 
 #menu{
-    width: 100%;
+    min-width: 100%;
     height: auto;
 }

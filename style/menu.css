@@ -1,6 +1,5 @@
-html,
 #menu > h1 {
-  padding: 2%;
+  padding: 0% 2%;
 }
 #menu > #formAjoutParcelle {
   display: none;
@@ -12,6 +11,7 @@ html,
 }
 #menu > #sidebar {
   width: 35vw;
+  padding: 0% 1%;
 }
 #menu > #sidebar h2,
 #menu > #sidebar p {

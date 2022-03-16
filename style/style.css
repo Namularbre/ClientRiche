@@ -47,6 +47,7 @@ form{
 }
 
 #menu{
+    display: flex;
     min-width: 100%;
-    height: auto;
+    min-height: 100vh;
 }

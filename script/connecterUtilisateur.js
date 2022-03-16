@@ -13,7 +13,7 @@ $.fn.connecterUtilisateur = function ({ container, user, success, error }) {
         json?.data.length != 0 ? success(json.data[0]) : error();
       },
       error: function(t,e, l) {
-        error()
+        error();
       },
     })
   }

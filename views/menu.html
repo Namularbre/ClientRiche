@@ -1,4 +1,5 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBb-LW0E0EktYw4G7Bb-WxgURITxqUKwE&callback=initMap"></script>
+<script src="./script/trouverParcelle.js"></script>
 <div id="menu">
     <div id="sidebar">
         <h1>Menu parcelles</h1>
@@ -18,29 +19,12 @@
 </div>
 <script>
 
-    console.log(user)
-
-    user.societe?.parcelles.forEach(parcelle => {
-        $("#listeParcelle").append(`
-            <li>
-                <h2>${parcelle.toString}</h2>
-                <h4>${parcelle.adresse.toString}</h4>
-            </li>`)
+    $(document).trouverParcelle({
+        user,
+        success: (parcelle) => {
+            $("#listeParcelle").append(`<li><h2>${parcelle.toString}</h2><h4>${parcelle.adresse.toString}</h4></li>`)
+        }
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -69,9 +53,13 @@
                 }
             }
         });
+        placerMarqueurs(geocoder);
+    }
 
-        document.querySelectorAll('h2').forEach((address,i) => {
-            geocoder.geocode({ address: address.innerText }, function (result, status) {
+    // fonction pour placer les marqueurs
+    function placerMarqueurs(geocoder) {
+        $('h4').each((i,address) => {
+            geocoder.geocode({ address: address.textContent }, function (result, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
                         new google.maps.Marker({
@@ -89,13 +77,13 @@
         })
     }
 
+    // fonction pour deplacer la map
     function moveMap(address) {
         geocoder = new google.maps.Geocoder();
         console.log(address)
         geocoder.geocode({ address }, function (result, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
-                    console.log("test")
                     map.setCenter(result[0].geometry.location);
                     map.setZoom(16);
                 }
@@ -104,29 +92,13 @@
 
     }
 
-    function getAdresse() {
-        geocoder = new google.maps.Geocoder();
-        let resultat = {
-            lat: null,
-            lng: null,
-        };
-        return resultat;
-    }
-
+    // ajout des parcelles dans la sidebar
     let adresses = $("li>h4");
     adresses.each((index, adresse) => $(document).on('click', "li", function (event) {
         console.log(adresse);
         moveMap(adresse.textContent);
     }))
-
-    /*let adresse = document.querySelectorAll('h2');
-
-    adresses.forEach((adresse) => {
-        adresse.addEventListener("click", function (event) {
-            moveMap(adresse.innerHTML);
-        })
-    });*/
-
+    
     $("#formAjoutParcelle").hide();
 
     let btnAfficherFormAjoutParcelle = $("#afficherFormulaire");
@@ -177,18 +149,6 @@
         nouveauP.innerText = nouveauProduit;
         nouveauLi.append(nouveauP);
         listeParcelle.append(nouveauLi);
-
-
-
-
-
-
-
-
-
-
-
-
     })
 
 </script>

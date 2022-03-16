@@ -6,8 +6,6 @@
         <form method="post" id="formAjoutParcelle">
             <label for="adresse">Adresse</label>
             <input type="text" id="adresse" placeholder="saisir adresse">
-            <label for="produit">Produit</label>
-            <input type="text" id="produit" placeholder="saisir produit">
             <input type="button" id="ajouterParcelle" value="Creer">
         </form>
         <input type="button" id="afficherFormulaire" value="Ajouter une parcelle">
@@ -19,6 +17,38 @@
     <div id="map"></div>
 </div>
 <script>
+
+    console.log(user)
+
+    user.societe?.parcelles.forEach(parcelle => {
+        $("#listeParcelle").append(`
+            <li>
+                <h2>${parcelle.toString}</h2>
+                <h4>${parcelle.adresse.toString}</h4>
+            </li>`)
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     let map;
     let geocoder;
 
@@ -61,10 +91,11 @@
 
     function moveMap(address) {
         geocoder = new google.maps.Geocoder();
-
+        console.log(address)
         geocoder.geocode({ address }, function (result, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+                    console.log("test")
                     map.setCenter(result[0].geometry.location);
                     map.setZoom(16);
                 }
@@ -82,10 +113,10 @@
         return resultat;
     }
 
-    let adresses = $("h2");
-    adresses.each((index, adresse) => adresse.on('click', function (event) {
-        console.log(index);
-        moveMap(adresse.text());
+    let adresses = $("li>h4");
+    adresses.each((index, adresse) => $(document).on('click', "li", function (event) {
+        console.log(adresse);
+        moveMap(adresse.textContent);
     }))
 
     /*let adresse = document.querySelectorAll('h2');
@@ -95,6 +126,8 @@
             moveMap(adresse.innerHTML);
         })
     });*/
+
+    $("#formAjoutParcelle").hide();
 
     let btnAfficherFormAjoutParcelle = $("#afficherFormulaire");
     btnAfficherFormAjoutParcelle.on('click', function () {
@@ -144,6 +177,18 @@
         nouveauP.innerText = nouveauProduit;
         nouveauLi.append(nouveauP);
         listeParcelle.append(nouveauLi);
+
+
+
+
+
+
+
+
+
+
+
+
     })
 
 </script>

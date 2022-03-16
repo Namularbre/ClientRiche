@@ -28,9 +28,12 @@
         </form>
     </div>
     <script>
+        let user = null;
+
         $(document).connecterUtilisateur({
             container: "form",
-            success: () => {
+            success: (data) => {
+                user = data
                $("#ConnectionView").remove();
                //On charge la vue du menu si l'utilisateur est reconnu
                 allerDansMenu();

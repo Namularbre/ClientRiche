@@ -1,12 +1,23 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBb-LW0E0EktYw4G7Bb-WxgURITxqUKwE&callback=initMap"></script>
 <script src="./script/trouverParcelle.js"></script>
+<script src="./script/ajouterParcelle.js"></script>
 <div id="menu">
     <div id="sidebar">
         <h1>Menu parcelles</h1>
         
         <form method="post" id="formAjoutParcelle">
-            <label for="adresse">Adresse</label>
-            <input type="text" id="adresse" placeholder="saisir adresse">
+            <label for="Numero">Numéro</label>
+            <input type="text" id="Numero" placeholder="saisir numéro">
+            <label for="Adresse">Adresse</label>
+            <input type="text" id="Adresse" placeholder="saisir adresse">
+            <label for="Codepostal">Code postal</label>
+            <input type="text" id="Codepostal" placeholder="saisir code postal">
+            <label for="Ville">Ville</label>
+            <input type="text" id="Ville" placeholder="saisir ville">
+            <label for="Description">Description</label>
+            <input type="text" id="Description" placeholder="saisir Description">
+            <label for="Libellee">Description</label>
+            <input type="text" id="Libellee" placeholder="saisir Description">
             <input type="button" id="ajouterParcelle" value="Creer">
         </form>
         <input type="button" id="afficherFormulaire" value="Ajouter une parcelle">
@@ -19,10 +30,24 @@
 </div>
 <script>
 
+    console.log(user)
+
     $(document).trouverParcelle({
         user,
         success: (parcelle) => {
-            $("#listeParcelle").append(`<li><h2>${parcelle.toString}</h2><h4>${parcelle.adresse.toString}</h4></li>`)
+            // TODO: $("#listeParcelle").append(`<li><h2>${parcelle?.toString}</h2><h4>${parcelle?.adresse?.toString}</h4></li>`)
+        }
+    })
+
+
+    $("#formAjoutParcelle").ajouterParcelle({
+        container: "",
+        user,
+        success: () => {
+            alert("parcelle ajoutée !!");
+        },
+        error : () => {
+            alert("Ajout impossible !!");
         }
     })
 
@@ -53,11 +78,6 @@
                 }
             }
         });
-        placerMarqueurs(geocoder);
-    }
-
-    // fonction pour placer les marqueurs
-    function placerMarqueurs(geocoder) {
         $('h4').each((i,address) => {
             geocoder.geocode({ address: address.textContent }, function (result, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
@@ -76,6 +96,9 @@
             });
         })
     }
+
+    // fonction pour placer les marqueurs
+
 
     // fonction pour deplacer la map
     function moveMap(address) {
@@ -100,12 +123,12 @@
     }))
     
     $("#formAjoutParcelle").hide();
-
-    let btnAfficherFormAjoutParcelle = $("#afficherFormulaire");
+    /*Ajout parcelle*/
+    /*let btnAfficherFormAjoutParcelle = $("#afficherFormulaire");
     btnAfficherFormAjoutParcelle.on('click', function () {
         btnAfficherFormAjoutParcelle.val(changerTexteBoutonParcelle());
         $("#formAjoutParcelle").toggle();
-    })
+    })*/
 
     function changerTexteBoutonParcelle() {
         if (btnAfficherFormAjoutParcelle.val() == "Cacher parcelle") {
@@ -114,18 +137,6 @@
             return "Cacher parcelle";
         }
     }
-
-    /*let btnAfficherFormAjoutParcelle = document.getElementById("afficherFormulaire");
-    btnAfficherFormAjoutParcelle.addEventListener("click", function (event) {
-        if (formAjoutParcelle.style.display == "block") {
-            formAjoutParcelle.style.display = "none";
-            btnAfficherFormAjoutParcelle.setAttribute('value', "Ajouter parcelle");
-        } else {
-            formAjoutParcelle.style.display = "block";
-            btnAfficherFormAjoutParcelle.setAttribute('value', "cacher formulaire");
-        }
-
-    });*/
 
     let formAjoutParcelle = document.getElementById("formAjoutParcelle");
     let btnAjoutParcelle = document.getElementById("ajouterParcelle");

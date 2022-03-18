@@ -12,14 +12,14 @@ $.fn.ajouterParcelle = function ({ container, user, success, error }) {
 
     // encode URI pour remplacer les espaces par des %20 par exemple
     let url = encodeURI(
-      `http://vps.e-mingo.net/coopagri/app/index.php?c=Adresse&x=1&a=enregistrer&entId=${user.id}&rueNumero=${rueNumero}&rueTypeId=${rueType}&rueNom=${nomRue}&codePostal=${codePostal}&ville=${ville}`
+      `http://vps.e-mingo.net/coopagri/app/index.php?c=Adresse&x=1&a=enregistrer&entId=0&rueNumero=${rueNumero}&rueTypeId=${rueType}&rueNom=${nomRue}&codePostal=${codePostal}&ville=${ville}`
     );
 
     $.ajax({
       url,
       crossDomain: true,
       success: function (json) {
-        
+        console.log(JSON.parse(json))
         ajouterParcelleAPI(JSON.parse(json).id);
       },
       error: function (t, e, l) {
@@ -33,7 +33,9 @@ $.fn.ajouterParcelle = function ({ container, user, success, error }) {
     let description = $("#Description").val() || "desc";
     let libelle = $("#Libelle").val() || "titre";
 
-    let url = encodeURI(`http://vps.e-mingo.net/coopagri/app/index.php?c=Parcelle&x=1&a=enregistrer&entId=${user.id}&exploitantId=${user.societe.id}&adresseId=${idAdresse}&libelle=${libelle}&description=${description}`);
+    console.log(idAdresse)
+
+    let url = encodeURI(`http://vps.e-mingo.net/coopagri/app/index.php?c=Parcelle&x=1&a=enregistrer&entId=0&exploitantId=${user.societe.id}&adresseId=${idAdresse}&libelle=${libelle}&description=${description}`);
 
     $.ajax({
       url,

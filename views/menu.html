@@ -21,8 +21,8 @@
             <label for="Description">Description</label>
             <input type="text" id="Description" placeholder="saisir Description">
             <label for="Libelle">Libelle</label>
-            <input type="text" id="Libelle" placeholder="saisir Description">
-            <input type="button" id="ajouterParcelle" value="Creer">
+            <input type="text" id="Libelle" placeholder="saisir Libelle">
+            <input type="button" id="Libelle" value="Creer">
         </form>
         <input type="button" id="afficherFormulaire" value="Ajouter une parcelle">
         <div>
@@ -76,9 +76,7 @@
         error : () => {
             alert("Ajout impossible !!");
         }
-    })
-
-    
+    })    
 
     // gestion de la map
     let map;
@@ -134,7 +132,6 @@
 
     }
 
-    
     $("#formAjoutParcelle").hide();
     /*Ajout parcelle*/
     
@@ -152,29 +149,39 @@
         }
     }
 
-    let formAjoutParcelle = document.getElementById("formAjoutParcelle");
+    let formAjoutParcelle = $("#formAjoutParcelle");
+    let btnAjoutParcelle = $("#ajoutParcelle");
+    btnAjoutParcelle.on("click", function () {
+        let nouvelleAdresse = $("#adresse").text();
+        let listeParcelle = $("#listeParcelle");        
+        let nouveauProduit = $("produit").text();
+        listeParcelle.append("<li><p>" + nouvelleAdresse + "</p><p>"+ nouveauProduit + "</p></li>");
+        listeParcelle.on('click', function () {
+            moveMap(nouvelleAdresse);
+        });
+    })
+
+
+    /*let formAjoutParcelle = document.getElementById("formAjoutParcelle");
     let btnAjoutParcelle = document.getElementById("ajouterParcelle");
     btnAjoutParcelle.addEventListener("click", function (event) {
-        /*Creation de l'adresse*/
+        //Creation de l'adresse
         let nouvelleAdresse = document.getElementById("adresse").value;
         let listeParcelle = document.getElementById("listeParcelle");
         let nouveauLi = document.createElement('li');
         let baliseAdresse = document.createElement('h2');
         baliseAdresse.innerText = nouvelleAdresse;
         nouveauLi.append(baliseAdresse);
-        //listeParcelle.append(nouveauLi);
-
         listeParcelle.addEventListener("click", function (event) {
             moveMap(nouvelleAdresse);
         });
-        /*Creation de l'affichage du produit*/
+        //Creation de l'affichage du produit
         let nouveauProduit = document.getElementById("produit").value;
         let nouveauP = document.createElement('p');
         nouveauP.innerText = nouveauProduit;
         nouveauLi.append(nouveauP);
         listeParcelle.append(nouveauLi);
-    })
-
+    });*/
 </script>
 
 </html>

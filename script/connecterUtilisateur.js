@@ -1,7 +1,5 @@
 $.fn.connecterUtilisateur = function ({ container, user, success, error }) {
   $(container + " input[type=button]").on("click", login);
-
-
   let sessionLogin = sessionStorage.getItem("login")
   let sessionPass = sessionStorage.getItem("password")
 

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="02469a74-5b37-49b5-97df-9bd00c38d736" name="Changes" comment="" />
+    <list default="true" id="02469a74-5b37-49b5-97df-9bd00c38d736" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/style/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/menu.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,7 +24,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../inetpub/wwwroot/projet" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -37,7 +39,7 @@
       <updated>1647434428976</updated>
       <workItem from="1647434430620" duration="397000" />
       <workItem from="1647442252659" duration="622000" />
-      <workItem from="1647550910135" duration="322000" />
+      <workItem from="1647550910135" duration="628000" />
     </task>
     <servers />
   </component>

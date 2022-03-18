@@ -36,7 +36,15 @@
 #menu > h2:hover {
   text-decoration: underline;
 }
-#menu > li > p {
-  margin: 2%;
-  padding: 2%;
+
+#menu li > h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#menu ol {
+  padding: 0 0 0 20px;
+  list-style-type: decimal;
+  list-style: decimal;
 }

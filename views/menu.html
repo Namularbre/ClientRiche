@@ -8,6 +8,10 @@
         <form method="post" id="formAjoutParcelle">
             <label for="Numero">Numéro</label>
             <input type="text" id="Numero" placeholder="saisir numéro">
+            <label for="typeRue">type de rue</label>
+            <select name="typeRue" id="typeRue">
+                <option value="null"> ---- </option>
+            </select>
             <label for="Adresse">Adresse</label>
             <input type="text" id="Adresse" placeholder="saisir adresse">
             <label for="Codepostal">Code postal</label>
@@ -16,8 +20,8 @@
             <input type="text" id="Ville" placeholder="saisir ville">
             <label for="Description">Description</label>
             <input type="text" id="Description" placeholder="saisir Description">
-            <label for="Libellee">Description</label>
-            <input type="text" id="Libellee" placeholder="saisir Description">
+            <label for="Libelle">Libelle</label>
+            <input type="text" id="Libelle" placeholder="saisir Description">
             <input type="button" id="ajouterParcelle" value="Creer">
         </form>
         <input type="button" id="afficherFormulaire" value="Ajouter une parcelle">
@@ -29,21 +33,44 @@
     <div id="map"></div>
 </div>
 <script>
+    console.debug(user)
+    
+    // deplacer la map quand on clique sur une parcelle a gauche
+    $(document).on('click', "#menu li", function (event) {
+        moveMap(event.currentTarget.childNodes[1].textContent);
+    })
 
-    console.log(user)
-
+    // recuperation et affichage de la liste des parcelles
     $(document).trouverParcelle({
         user,
         success: (parcelle) => {
-            // TODO: $("#listeParcelle").append(`<li><h2>${parcelle?.toString}</h2><h4>${parcelle?.adresse?.toString}</h4></li>`)
+           $("#listeParcelle").append(`<li><h2>${parcelle?.toString}</h2><h4>${parcelle?.adresse?.toString}</h4></li>`)
+        },
+        error: (msg) => {
+            console.error(msg)
         }
     })
+    //recuperation et ajout des types de rue dans le select
+    $.ajax({
+             url : "http://vps.e-mingo.net/coopagri/app/index.php?&c=api&n=typeRue&x=1",
+             crossDomain: true,
+             success: function(json) {
+               json.data.forEach(type => {
+                   console.log("test")
+                    $("#typeRue").append(`<option value='${type.id}'>${type.libelle}</option>`)
+               })
+             },
+             error: function(t,e, l) {
+               error();
+             },
+         })
 
-
+    // ajout de la parcelle dans l'api
     $("#formAjoutParcelle").ajouterParcelle({
         container: "",
         user,
         success: () => {
+            console.log("test")
             alert("parcelle ajoutée !!");
         },
         error : () => {
@@ -51,13 +78,9 @@
         }
     })
 
+    
 
-
-
-
-
-
-
+    // gestion de la map
     let map;
     let geocoder;
 
@@ -88,7 +111,7 @@
                                 lng : result[0].geometry.location.lng()
                             },
                             map,
-                            title: adresse.innerText,
+                            title: address.innerText,
                             label: (i + 1).toString(),
                         });
                     }
@@ -96,10 +119,6 @@
             });
         })
     }
-
-    // fonction pour placer les marqueurs
-
-
     // fonction pour deplacer la map
     function moveMap(address) {
         geocoder = new google.maps.Geocoder();
@@ -115,20 +134,15 @@
 
     }
 
-    // ajout des parcelles dans la sidebar
-    let adresses = $("li>h4");
-    adresses.each((index, adresse) => $(document).on('click', "li", function (event) {
-        console.log(adresse);
-        moveMap(adresse.textContent);
-    }))
     
     $("#formAjoutParcelle").hide();
     /*Ajout parcelle*/
-    /*let btnAfficherFormAjoutParcelle = $("#afficherFormulaire");
+    
+    let btnAfficherFormAjoutParcelle = $("#afficherFormulaire");
     btnAfficherFormAjoutParcelle.on('click', function () {
         btnAfficherFormAjoutParcelle.val(changerTexteBoutonParcelle());
         $("#formAjoutParcelle").toggle();
-    })*/
+    })
 
     function changerTexteBoutonParcelle() {
         if (btnAfficherFormAjoutParcelle.val() == "Cacher parcelle") {

@@ -63,7 +63,7 @@
              error: function(t,e, l) {
                error();
              },
-         })
+    })
 
     // ajout de la parcelle dans l'api
     $("#formAjoutParcelle").ajouterParcelle({
@@ -159,8 +159,6 @@
             moveMap(nouvelleAdresse);
         });
     })
-
-
     /*let formAjoutParcelle = document.getElementById("formAjoutParcelle");
     let btnAjoutParcelle = document.getElementById("ajouterParcelle");
     btnAjoutParcelle.addEventListener("click", function (event) {
@@ -185,8 +183,7 @@
     //Cette fonction sera déclancher au clique d'une adresse et permetra d'afficher un formulaire de modification
     //Je verrais si on ne met pas direct un bouton.
     function creerFormulaireModification(div) {
-        $("")
+        $(document).append();
     }
 </script>
-
 </html>

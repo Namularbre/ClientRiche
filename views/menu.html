@@ -30,7 +30,9 @@
             </ol>
         </div>
     </div>
-    <div id="map"></div>
+    <div id="map">
+        <!--Ici sera afficher la map-->
+    </div>
 </div>
 <script>
     console.debug(user)
@@ -44,7 +46,7 @@
     $(document).trouverParcelle({
         user,
         success: (parcelle) => {
-           $("#listeParcelle").append(`<li><h2>${parcelle?.toString}</h2><h4>${parcelle?.adresse?.toString}</h4></li>`)
+           $("#listeParcelle").append(`<li class='infoParcelle'><h2>${parcelle?.toString}</h2><h4>${parcelle?.adresse?.toString}</h4></li>`)
         },
         error: (msg) => {
             console.error(msg)
@@ -151,6 +153,7 @@
     let formAjoutParcelle = $("#formAjoutParcelle");
     let btnAjoutParcelle = $("#ajoutParcelle");
     btnAjoutParcelle.on("click", function () {
+        console.log("toto");
         let nouvelleAdresse = $("#adresse").text();
         let listeParcelle = $("#listeParcelle");        
         let nouveauProduit = $("produit").text();
@@ -158,7 +161,21 @@
         listeParcelle.on('click', function () {
             moveMap(nouvelleAdresse);
         });
-    })
+    });
+
+    //Cette fonction sera déclanchée au clique d'une adresse et permetra d'afficher un formulaire de modification
+    //Je verrais si on ne met pas direct un bouton.
+    function creerFormulaireModification(div) {
+        $(this).load($(".infoParcelle"), () => {
+            $(".infoParcelle").append("<input type='button' class='btnModifParcelle' value='ModifierParcelle'></input>");
+            $(".btnModifParcelle").on('click', () => {
+                let parcelleCliquee = { adresse : $(this + ">h4"),
+                                        nom :     $(this + ">h2"),
+                                    }
+                $(this).append("");
+            });
+        });   
+    }
     /*let formAjoutParcelle = document.getElementById("formAjoutParcelle");
     let btnAjoutParcelle = document.getElementById("ajouterParcelle");
     btnAjoutParcelle.addEventListener("click", function (event) {
@@ -179,11 +196,5 @@
         nouveauLi.append(nouveauP);
         listeParcelle.append(nouveauLi);
     });*/
-
-    //Cette fonction sera déclancher au clique d'une adresse et permetra d'afficher un formulaire de modification
-    //Je verrais si on ne met pas direct un bouton.
-    function creerFormulaireModification(div) {
-        $(document).append();
-    }
 </script>
 </html>

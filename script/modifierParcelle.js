@@ -27,6 +27,13 @@ $.fn.modifierParcelle = function ({container, user, sucess, error}) {
         });
 
         /*
+            Idée : le premier formulaire on affiche toutes les parcelles, mais avec un bouton modifier.
+            Ce bouton déclanchera une fonction qui vas stocké l'adresse.
+            Il fera apparaitre le formulaire présent sur la vue, il faudrai aussi un truc du style : parcelle selectioné : "Ma parcelle"
+            On remplie le formulaire qui déclanchera la fonction ici.
+            On affiche un pop-up qui prévient que la parcelle "Parcelle" a bien été modifier.
+
+
             A faire : chopper l'url pour modifier une adresse/parcelle
             Copier le modèle pour l'ajout d'une parcelle, mais en passant par la modification
 

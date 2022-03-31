@@ -3,7 +3,12 @@
 <script src="./script/ajouterParcelle.js"></script>
 <div id="menu">
     <div id="sidebar">
-        <h1>Menu parcelles</h1>
+        <h1>Ajouter Parcelle</h1>
+        <nav>
+            <ul>
+                <li class="lien">Retour</li>
+            </ul>
+        </nav>
         
         <form method="post" id="formAjoutParcelle">
             <label for="Numero">Numéro</label>
@@ -196,5 +201,13 @@
         nouveauLi.append(nouveauP);
         listeParcelle.append(nouveauLi);
     });*/
+
+    $(this).ready( () => {
+        $(".lien").on('click', () => {
+            $.get("./views/menu.html", (htmlObtenue) => {
+                $("body").html(htmlObtenue);
+            });
+        });
+    });
 </script>
 </html>

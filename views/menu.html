@@ -1,17 +1,4 @@
 <script src="../script/jquery.js"></script>
-<style>
-    nav{
-        background-color: lightblue;
-        padding: 2%;
-        width: 60%;
-        text-align: center;
-    }
-    .lien{
-        color: blue;
-        text-decoration: underline;
-        padding: 1%;
-    }
-</style>
 <div id="menu">
     <nav>
         <h1>Menu</h1>
@@ -20,37 +7,41 @@
             <li class="lien">Modifier parcelle</li>
         </ul>
     </nav>
+    <img src="./ressource/illustrationMenu.PNG">
 </div>
-<!--TODO : faire marcher cette page !-->
 <script>
-    //Le router de l'application
-    $(this).ready( () => {
-        $(".lien").on('click', function () {
-           let texte = $(this).text();
-           let url;
-           switch (texte) {
-               case "Ajouter parcelle":
-                   url = './views/ajouterparcelle.html';
-                   break;
-
-                case "Modifier parcelle":
-                   url = './views/modifierparcelle.html';
-                   break;
-           
-               default:
-                   url = './views/erreurroutage.html';
-                   break;
-           }
-           $.get(url, (contenuVue) => {
-            let retour = $("<p id='retour'>retour</p>");
-            $("body").html(contenuVue);
-            $("body").append(retour);
-            $("#retour").on('click', () => {
-                $.get('views/menu.html', (contenuMenu) =>{
-                    $("body").html(contenuMenu);
+            //Le router de l'application
+            $(this).ready( () => {
+            $(".lien").on('click', function () {
+               let texte = $(this).text();
+               let url;
+               switch (texte) {
+                   case "Ajouter parcelle":
+                       url = './views/ajouterparcelle.html';
+                       break;
+    
+                    case "Modifier parcelle":
+                       url = './views/modifierparcelle.html';
+                       break;
+    
+                    case "retour":
+                        url = './views/menu.html';
+                        break;
+               
+                   default:
+                       url = './views/erreurroutage.html';
+                       break;
+                }
+               $.get(url, (contenuVue) => {
+                    let retour = $("<p id='retour'>retour</p>");
+                    $("body").html(contenuVue);
+                    $("body").append(retour);
+                    $("#retour").on('click', () => {
+                        $.get('views/menu.html', (contenuMenu) =>{
+                            $("body").html(contenuMenu);
+                        });
+                    })
                 });
-            })
-           });
+            });
         });
-    });
 </script>

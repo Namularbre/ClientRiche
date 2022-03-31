@@ -1,4 +1,7 @@
 <div id="modification">
+    <nav>
+        <li class="lien">Retour</li>
+    </nav>
     <form method="post" id="formModifierParcelle">
         <label for="Numero">Numéro</label>
         <input type="text" id="Numero" placeholder="saisir numéro">
@@ -19,3 +22,12 @@
         <input type="button" id="Libelle" value="Creer">
     </form>
 </div>
+<script>
+    $(this).ready( () => {
+        $(".lien").on('click', () => {
+            $.get("./views/menu.html", (htmlObtenue) => {
+                $("body").html(htmlObtenue);
+            });
+        });
+    });
+</script>

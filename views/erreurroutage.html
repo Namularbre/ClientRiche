@@ -1,0 +1,20 @@
+<style>
+    #retour{
+        text-decoration: underline;
+        color: blue;
+    }
+</style>
+<div id="erreurroutage">
+    <h1>Oh non !</h1>
+    <p>Il semblerai que la page que vous désirez n'est pas disponible en passant par là...</p>
+    <p id="retour">Retournons au menu par ici</p>
+</div>
+<script>
+    $(this).ready( () => {
+        $("#retour").on('click', () => {
+            $.get("./views/menu.html", (htmlObtenu) => {
+                $("body").html(htmlObtenu);
+            });
+        });
+    });
+</script>

@@ -1,0 +1,12 @@
+nav{
+    background-color: lightblue;
+    padding: 2%;
+    width: 60%;
+    text-align: center;
+}
+.lien{
+    color: blue;
+    text-decoration: underline;
+    padding: 1%;
+    cursor: pointer;
+}

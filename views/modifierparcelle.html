@@ -1,38 +1,42 @@
 <script src="./script/trouverParcelle.js"></script>
 <div id="modification">
-    <nav>
+    <nav class="retour">
         <ul>
             <li class="lien">Retour</li>
         </ul>
     </nav>
+    <h1>Modifier une parcelle</h1>
     <div id="conteneur">
-        <form method="post" id="formModifierParcelle">
-            <label for="Numero">Numéro</label>
-            <input type="text" id="Numero" placeholder="saisir numéro">
-            <label for="typeRue">type de rue</label>
-            <select name="typeRue" id="typeRue">
-                <option value="null"> ---- </option>
-            </select>
-            <label for="Adresse">Adresse</label>
-            <input type="text" id="Adresse" placeholder="saisir adresse">
-            <label for="Codepostal">Code postal</label>
-            <input type="text" id="Codepostal" placeholder="saisir code postal">
-            <label for="Ville">Ville</label>
-            <input type="text" id="Ville" placeholder="saisir ville">
-            <label for="Description">Description</label>
-            <input type="text" id="Description" placeholder="saisir Description">
-            <label for="Libelle">Libelle</label>
-            <input type="text" id="Libelle" placeholder="saisir Libelle">
-            <input type="button" id="Libelle" value="Creer">
-        </form>
         <div id="affichageParcelleModification">
             <ol id="listeParcelle">
                 <!--C'est ici que s'affiche la liste des parcelles-->
             </ol>
         </div>
+        <form method="post" id="formModifierParcelle">
+            <h3>Modifier la parcelle selectionnée</h3>
+            <label for="Numero">Numéro</label>
+            <input type="text"   id="Numero"      class="controleFormulaire" placeholder="saisir numéro">
+            <label for="typeRue">type de rue</label>
+            <select name="typeRue" id="typeRue">
+                <option value="null"> ---- </option>
+            </select>
+            <label for="Adresse">Adresse</label>
+            <input type="text"   id="Adresse"     class="controleFormulaire" placeholder="saisir adresse">
+            <label for="Codepostal">Code postal</label>
+            <input type="text"   id="Codepostal"  class="controleFormulaire" placeholder="saisir code postal">
+            <label for="Ville">Ville</label>
+            <input type="text"   id="Ville"       class="controleFormulaire" placeholder="saisir ville">
+            <label for="Description">Description</label>
+            <input type="text"   id="Description" class="controleFormulaire" placeholder="saisir Description">
+            <label for="Libelle">Libelle</label>
+            <input type="text"   id="Libelle"     class="controleFormulaire" placeholder="saisir Libelle">
+            <input type="button" id="btnValiderFormModif" value="Valider Modification">
+        </form>
     </div>
 </div>
 <script>
+    let parcelleSelectionnee = {libelle : "", adresse : ""}
+
     //Action au chargement de la vue
     $(this).ready( () => {
         $(".lien").on('click', () => {
@@ -42,7 +46,17 @@
         });
 
         //Par défaut, on cache le forulaire. Il sera montrer dès que l'on a choisi l'adresse que l'on veut changer.
-        $("#formModifierParcelle").toggle();
+        //Je n'utilise pas de .hide() car je veux préservé l'espace que prend le formulaire
+        $("#formModifierParcelle").css('visibility','hidden');
+
+        $("#btnValiderFormModif").on('click', () => {
+            if(!verifierSiFormulaireEstRempli()){
+                alert("Vous devez remplir tout les champs");
+                
+            } else{
+                alert("Modification apporté");
+            }
+        });
     });
 
     $(this).trouverParcelle({
@@ -55,16 +69,29 @@
                 </li>`
             );
             $(".btnModifierParcelle").on("click", () => {
-                $("#formModifierParcelle").show();
+                $("#formModifierParcelle").css('visibility','visible');
             });
-
         },
         error: (msg) => {
             console.error(msg)
         }
     });
 
-    //RDV à cette URL, elle donne des trucs intéressant, reste plus qu'a voir la doc. (si il y en a, sinon harceler le prof)
+    //Cette fonction vérifie que les input de type texte d'un formulaire son bien remplie, sinon elle renvoie false.
+    function verifierSiFormulaireEstRempli() {
+        let champsOk = true;
+        $(".controleFormulaire").each( (index, controle) => {
+            if ($(controle).val() === "") {
+                champsOk = false;
+            }
+        });
+        if ($("#typeRue").find(":selected").text() == " ---- ") {
+            champsOk = false;
+        }
+        return champsOk;
+    }
+
+    //RDV à cette URL, elle donne des infos intéressantes, reste plus qu'a voir la doc. (si il y en a, sinon harceler le prof)
     //http://vps.e-mingo.net/coopagri/app/index.php?c=Adresse&x=1&a=changer on peut remplacer par modifier, après ça ressemble 
     //pas à un formulaire pour faire ce qu'on veut.
 </script>

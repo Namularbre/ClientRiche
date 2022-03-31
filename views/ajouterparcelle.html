@@ -4,12 +4,11 @@
 <div id="menu">
     <div id="sidebar">
         <h1>Ajouter Parcelle</h1>
-        <nav>
+        <nav class="retour">
             <ul>
                 <li class="lien">Retour</li>
             </ul>
         </nav>
-        
         <form method="post" id="formAjoutParcelle">
             <label for="Numero">Numéro</label>
             <input type="text" id="Numero" placeholder="saisir numéro">
@@ -37,7 +36,7 @@
         </div>
     </div>
     <div id="map">
-        <!--Ici sera afficher la map-->
+        <!--Ici sera affichée la map-->
     </div>
 </div>
 <script>
@@ -78,7 +77,6 @@
         container: "",
         user,
         success: () => {
-            console.log("test")
             alert("parcelle ajoutée !!");
         },
         error : () => {
@@ -141,7 +139,6 @@
 
     $("#formAjoutParcelle").hide();
     // ajout parcelle
-    
     let btnAfficherFormAjoutParcelle = $("#afficherFormulaire");
     btnAfficherFormAjoutParcelle.on('click', function () {
         btnAfficherFormAjoutParcelle.val(changerTexteBoutonParcelle());
@@ -203,6 +200,7 @@
         listeParcelle.append(nouveauLi);
     });*/
 
+    // pour pouvoir revenir au menu
     $(this).ready( () => {
         $(".lien").on('click', () => {
             $.get("./views/menu.html", (htmlObtenue) => {

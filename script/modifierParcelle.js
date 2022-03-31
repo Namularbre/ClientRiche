@@ -25,5 +25,15 @@ $.fn.modifierParcelle = function ({container, user, sucess, error}) {
                 error();
             },
         });
+
+        /*
+            A faire : chopper l'url pour modifier une adresse/parcelle
+            Copier le modèle pour l'ajout d'une parcelle, mais en passant par la modification
+
+            On peut sans doute récup une adresse ici, si besoin :
+            http://vps.e-mingo.net/coopagri/app/index.php?c=Adresse&x=1&a=changer
+
+
+        */
     }
 }

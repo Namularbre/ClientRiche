@@ -16,41 +16,41 @@
     <nav>
         <h1>Menu</h1>
         <ul>
-            <li class="lien">
-                Ajouter parcelle
-            </li>
-            <li class="lien">
-                Modifier parcelle
-            </li>
+            <li class="lien">Ajouter parcelle</li>
+            <li class="lien">Modifier parcelle</li>
         </ul>
     </nav>
 </div>
 <!--TODO : faire marcher cette page !-->
 <script>
-    //Creation des routes
+    //Le router de l'application
     $(this).ready( () => {
-        $(".lien").on('click', () => {
-            console.log($(this));
-
-            switch ($(this).text()) {
-                case "Ajouter parcelle":
-                    $.get("./views/ajouterparcelle.html", (htmlObtenu) => {
-                        $("body").html(htmlObtenu);
-                    });
-                    break;
+        $(".lien").on('click', function () {
+           let texte = $(this).text();
+           let url;
+           switch (texte) {
+               case "Ajouter parcelle":
+                   url = './views/ajouterparcelle.html';
+                   break;
 
                 case "Modifier parcelle":
-                    $.get("./views/modifierparcelle.html", (htmlObtenu) => {
-                        $("body").html(htmlObtenu);
-                    });
-                    break;
-            
-                default:
-                    $.get("./views/erreurroutage.html", (htmlObtenu) => {
-                        $("body").html(htmlObtenu);
-                    });
-                    break;
-            }
+                   url = './views/modifierparcelle.html';
+                   break;
+           
+               default:
+                   url = './views/erreurroutage.html';
+                   break;
+           }
+           $.get(url, (contenuVue) => {
+            let retour = $("<p id='retour'>retour</p>");
+            $("body").html(contenuVue);
+            $("body").append(retour);
+            $("#retour").on('click', () => {
+                $.get('views/menu.html', (contenuMenu) =>{
+                    $("body").html(contenuMenu);
+                });
+            })
+           });
         });
     });
 </script>

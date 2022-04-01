@@ -6,6 +6,7 @@
         </ul>
     </nav>
     <h1>Modifier une parcelle</h1>
+    <h2 id="affichageParcelleSelectionee">Parcelle selectionée : </h2>
     <div id="conteneur">
         <div id="affichageParcelleModification">
             <ol id="listeParcelle">
@@ -69,8 +70,17 @@
                 <button class="btnModifierParcelle">Modifier</button>
                 </li>`
             );
-            $(".btnModifierParcelle").on("click", () => {
+            let i = 0;
+            $(".btnModifierParcelle").on("click", (event) => {
+                let adresse = $(event.target).prev().text();
+                let libelle = $(event.target).prev().prev().text();
+                raffraichierParcelleSelectionner(adresse,libelle);
+                i++;
+                console.log(i);
                 $("#formModifierParcelle").css('visibility','visible');
+
+                $("#affichageParcelleSelectionee").text($("#affichageParcelleSelectionee").text() + parcelleSelectionnee.libelle);
+                //console.log($(event.target).prev().prev().text()); 
             });
         },
         error: (msg) => {
@@ -90,6 +100,13 @@
             champsOk = false;
         }
         return champsOk;
+    }
+
+    function raffraichierParcelleSelectionner(adresse,libelle) {
+        if (adresse != parcelleSelectionnee.adresse || libelle != parcelleSelectionnee.libelle) {
+            parcelleSelectionnee.adresse = adresse;
+            parcelleSelectionnee.libelle = libelle;
+        }
     }
 
     //RDV à cette URL, elle donne des infos intéressantes, reste plus qu'a voir la doc. (si il y en a, sinon harceler le prof)

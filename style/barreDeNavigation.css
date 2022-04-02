@@ -7,10 +7,16 @@ nav{
     width: 60%;
     height: auto;
     text-align: center;
+    margin-bottom: 1%;
 }
 .lien{
     color: blue;
     text-decoration: underline;
     padding: 1%;
     cursor: pointer;
+    font-size: 20px;
+}
+
+.lien:hover{
+    color: rgb(8, 74, 197);
 }

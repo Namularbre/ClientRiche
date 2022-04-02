@@ -37,9 +37,7 @@
                        break;
                 }
                $.get(url, (contenuVue) => {
-                    let retour = $("<p id='retour'>retour</p>");
                     $("body").html(contenuVue);
-                    $("body").append(retour);
                     $("#retour").on('click', () => {
                         $.get('views/menu.html', (contenuMenu) =>{
                             $("body").html(contenuMenu);

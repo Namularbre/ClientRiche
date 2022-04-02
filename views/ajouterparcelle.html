@@ -1,6 +1,12 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBb-LW0E0EktYw4G7Bb-WxgURITxqUKwE&callback=initMap"></script>
 <script src="./script/trouverParcelle.js"></script>
 <script src="./script/ajouterParcelle.js"></script>
+<style>
+    #formAjoutParcelle{
+        display: flex;
+        flex-direction: column;
+    }
+</style>
 <div id="menu">
     <div id="sidebar">
         <h1>Ajouter Parcelle</h1>
@@ -9,6 +15,12 @@
                 <li class="lien">Retour</li>
             </ul>
         </nav>
+        <div>
+            <ol id="listeParcelle">
+                <!--C'est ici que s'affiche la liste des parcelles-->
+            </ol>
+        </div>
+        <input type="button" id="afficherFormulaire" value="Ajouter une parcelle">
         <form method="post" id="formAjoutParcelle">
             <label for="Numero">Numéro</label>
             <input type="text" id="Numero" placeholder="saisir numéro">
@@ -28,16 +40,11 @@
             <input type="text" id="Libelle" placeholder="saisir Libelle">
             <input type="button" id="Libelle" value="Creer">
         </form>
-        <input type="button" id="afficherFormulaire" value="Ajouter une parcelle">
-        <div>
-            <ol id="listeParcelle">
-                <!--C'est ici que s'affiche la liste des parcelles-->
-            </ol>
-        </div>
     </div>
     <div id="map">
         <!--Ici sera affichée la map-->
     </div>
+
 </div>
 <script>
     console.debug(user)

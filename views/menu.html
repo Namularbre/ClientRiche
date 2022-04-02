@@ -5,6 +5,7 @@
         <ul>
             <li class="lien">Ajouter parcelle</li>
             <li class="lien">Modifier parcelle</li>
+            <li class="lien">Statistiques parcelle</li>
         </ul>
     </nav>
     <img src="./ressource/illustrationMenu.PNG" alt="Image d'illustration">
@@ -27,6 +28,9 @@
                     case "retour":
                         url = './views/menu.html';
                         break;
+
+                    case "Statistiques parcelle":
+                        url = "./views/statistiquesParcelles.html"
                
                    default:
                        url = './views/erreurroutage.html';

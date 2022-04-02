@@ -1,0 +1,20 @@
+<div id="statistiquesVentes">
+    <h1>Statistiques des parcelles</h1>
+    <nav class="retour">
+        <ul>
+            <li class="lien">Retour</li>
+        </ul>
+    </nav>
+    <ul id="listeParcelle">
+        <lo>
+            <!--Afficher les parcelles-->
+        </lo>
+    </ul>
+</div>
+<script>
+    $(".lien").on('click', () => {
+        $.get('./views/menu.html', (htmlObtenu) => {
+            $("body").html(htmlObtenu);
+        });
+    });
+</script>

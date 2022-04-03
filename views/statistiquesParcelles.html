@@ -1,3 +1,4 @@
+<script src="./script/trouverParcelle.js"></script>
 <div id="statistiquesVentes">
     <h1>Statistiques des parcelles</h1>
     <nav class="retour">
@@ -7,7 +8,7 @@
     </nav>
     <ul id="listeParcelle">
         <lo>
-            <!--Afficher les parcelles-->
+            <!--Ici s'affiche les parcelles-->
         </lo>
     </ul>
 </div>
@@ -16,5 +17,15 @@
         $.get('./views/menu.html', (htmlObtenu) => {
             $("body").html(htmlObtenu);
         });
+    });
+
+    $(this).trouverParcelle({
+        user,
+        success : (parcelle) => {
+            console.log(parcelle);
+        },
+        error: (msg) => {
+            console.error(msg);
+        },
     });
 </script>

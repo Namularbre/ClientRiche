@@ -13,36 +13,37 @@
 <script>
             //Le router de l'application
             $(this).ready( () => {
-            $(".lien").on('click', function () {
-               let texte = $(this).text();
-               let url;
-               switch (texte) {
-                   case "Ajouter parcelle":
-                       url = './views/ajouterparcelle.html';
-                       break;
-    
-                    case "Modifier parcelle":
-                       url = './views/modifierparcelle.html';
-                       break;
-    
-                    case "retour":
-                        url = './views/menu.html';
+                $(".lien").on('click', function () {
+                let texte = $(this).text();
+                let url;
+                switch (texte) {
+                    case "Ajouter parcelle":
+                        url = './views/ajouterparcelle.html';
                         break;
+        
+                        case "Modifier parcelle":
+                        url = './views/modifierparcelle.html';
+                        break;
+        
+                        case "retour":
+                            url = './views/menu.html';
+                            break;
 
-                    case "Statistiques parcelle":
-                        url = "./views/statistiquesParcelles.html"
-               
-                   default:
-                       url = './views/erreurroutage.html';
-                       break;
+                        case "Statistiques parcelle":
+                            url = "./views/statistiquesParcelles.html";
+                            break;
+                
+                    default:
+                        url = './views/erreurroutage.html';
+                        break;
                 }
-               $.get(url, (contenuVue) => {
-                    $("body").html(contenuVue);
-                    $("#retour").on('click', () => {
-                        $.get('views/menu.html', (contenuMenu) =>{
-                            $("body").html(contenuMenu);
+                $.get(url, (contenuVue) => {
+                        $("body").html(contenuVue);
+                        $("#retour").on('click', () => {
+                            $.get('views/menu.html', (contenuMenu) =>{
+                                $("body").html(contenuMenu);
+                            });
                         });
-                    })
                 });
             });
         });

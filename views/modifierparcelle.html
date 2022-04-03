@@ -67,20 +67,20 @@
             $("#listeParcelle").append(`<li class='infoParcelle'>
                 <h2>${parcelle?.toString}</h2>
                 <h4>${parcelle?.adresse?.toString}</h4>
-                <button class="btnModifierParcelle">Modifier</button>
+                <button class="btnModifierParcelle" id="${parcelle?.toString}">Modifier</button>
                 </li>`
             );
-            let i = 0;
-            $(".btnModifierParcelle").on("click", (event) => {
+            $(`#${parcelle?.toString}`).on("click", (event) => {
+                console.log(parcelle?.toString);
+                $("#affichageParcelleSelectionee").text("Parcelle selectionnée : ");
+
                 let adresse = $(event.target).prev().text();
                 let libelle = $(event.target).prev().prev().text();
                 raffraichierParcelleSelectionner(adresse,libelle);
-                i++;
-                console.log(i);
+                
                 $("#formModifierParcelle").css('visibility','visible');
 
                 $("#affichageParcelleSelectionee").text($("#affichageParcelleSelectionee").text() + parcelleSelectionnee.libelle);
-                //console.log($(event.target).prev().prev().text()); 
             });
         },
         error: (msg) => {

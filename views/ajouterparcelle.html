@@ -172,20 +172,6 @@
             moveMap(nouvelleAdresse);
         });
     });
-
-    //Cette fonction sera déclanchée au clique d'une adresse et permetra d'afficher un formulaire de modification
-    //Je verrais si on ne met pas direct un bouton.
-    function creerFormulaireModification(div) {
-        $(this).load($(".infoParcelle"), () => {
-            $(".infoParcelle").append("<input type='button' class='btnModifParcelle' value='ModifierParcelle'></input>");
-            $(".btnModifParcelle").on('click', () => {
-                let parcelleCliquee = { adresse : $(this + ">h4"),
-                                        nom :     $(this + ">h2"),
-                                    }
-                $(this).append("");
-            });
-        });   
-    }
     /*let formAjoutParcelle = document.getElementById("formAjoutParcelle");
     let btnAjoutParcelle = document.getElementById("ajouterParcelle");
     btnAjoutParcelle.addEventListener("click", function (event) {

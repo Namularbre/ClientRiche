@@ -23,7 +23,7 @@
         user,
         success : (parcelle) => {
             let htmlAffichageChamp = "<ol id='listeChampParcelle'>";
-            console.log(parcelle.categorie);
+            
             parcelle.champs.forEach(champ => {
                 htmlAffichageChamp += "<li>" + champ.libelle +"</li>";
             });
@@ -35,7 +35,7 @@
                                         htmlAffichageChamp;
 
             $("#listeParcelle").append(htmlAffichageParcelle);
-
+            console.log(parcelle.categorieProduit);
         },
         error: (msg) => {
             console.error(msg);

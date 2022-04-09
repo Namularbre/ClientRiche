@@ -61,7 +61,7 @@
            $("#listeParcelle").append(`<li class='infoParcelle'><h2>${parcelle?.toString}</h2><h4>${parcelle?.adresse?.toString}</h4></li>`)
         },
         error: (msg) => {
-            console.error(msg)
+            console.error(msg);
         }
     })
     //recuperation et ajout des types de rue dans le select
@@ -159,7 +159,7 @@
             return "Cacher parcelle";
         }
     }
-
+    //TODO : vérifier si ça marche bien... j'ai des doutes
     let formAjoutParcelle = $("#formAjoutParcelle");
     let btnAjoutParcelle = $("#ajoutParcelle");
     btnAjoutParcelle.on("click", function () {

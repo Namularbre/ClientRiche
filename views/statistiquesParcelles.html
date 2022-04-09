@@ -1,5 +1,4 @@
 <script src="./script/trouverParcelle.js"></script>
-<script src="./script/trouverChamp.js"></script>
 <div id="statistiquesVentes">
     <h1>Statistiques des parcelles</h1>
     <nav class="retour">
@@ -28,21 +27,25 @@
             console.log(parcelle.libelle);
             console.log(parcelle.adresse);
             console.log(parcelle.champs);
+
+            let htmlAffichageChamp = "<ol id='listeChampParcelle'>";
+
+            parcelle.champs.forEach(champ => {
+                console.log(champ.libelle);
+                htmlAffichageChamp += "<li>" + champ.libelle +"</li>";
+            });
+
+            htmlAffichageChamp += "</ol>";
+
+            let htmlAffichageParcelle = "<h2 class='nomParcelle'>" + parcelle.libelle + "</h2>" +
+                                        "<h3 class='adresseParcelle'>" + parcelle.adresse.toString + "</h3>" +
+                                        htmlAffichageChamp;
+
+            $("#listeParcelle").append(htmlAffichageParcelle);
+
         },
         error: (msg) => {
             console.error(msg);
         },
     });
-
-    /*$(this).trouverChamp({
-        user,
-        success : (champ) => {
-            console.log("champ");
-            console.log(champ);
-            //$("#listeParcelle").append("<h2>" + champ + "</h2>")
-        },
-        error : (msg) => {
-            console.error(msg);
-        }
-    });*/
 </script>

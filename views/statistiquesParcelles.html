@@ -23,20 +23,26 @@
     $(this).trouverParcelle({
         user,
         success : (parcelle) => {
-            $("#listeParcelle").append(`<h2>${parcelle}</h2>`)
+            //$("#listeParcelle").append("<h2>" + parcelle + "</h2>")
+            console.log("parcelle :");
+            console.log(parcelle.libelle);
+            console.log(parcelle.adresse);
+            console.log(parcelle.champs);
         },
         error: (msg) => {
             console.error(msg);
         },
     });
 
-    $(this).trouverChamp({
+    /*$(this).trouverChamp({
         user,
         success : (champ) => {
-            $("#listeParcelle").append(`<h2>${champ}</h2>`)
+            console.log("champ");
+            console.log(champ);
+            //$("#listeParcelle").append("<h2>" + champ + "</h2>")
         },
         error : (msg) => {
             console.error(msg);
         }
-    });
+    });*/
 </script>

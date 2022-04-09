@@ -1,4 +1,5 @@
 <script src="./script/trouverParcelle.js"></script>
+<script src="./script/trouverChamp.js"></script>
 <div id="statistiquesVentes">
     <h1>Statistiques des parcelles</h1>
     <nav class="retour">
@@ -22,10 +23,20 @@
     $(this).trouverParcelle({
         user,
         success : (parcelle) => {
-            console.log(parcelle);
+            $("#listeParcelle").append(`<h2>${parcelle}</h2>`)
         },
         error: (msg) => {
             console.error(msg);
         },
+    });
+
+    $(this).trouverChamp({
+        user,
+        success : (champ) => {
+            $("#listeParcelle").append(`<h2>${champ}</h2>`)
+        },
+        error : (msg) => {
+            console.error(msg);
+        }
     });
 </script>

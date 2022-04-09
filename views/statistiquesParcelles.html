@@ -22,16 +22,9 @@
     $(this).trouverParcelle({
         user,
         success : (parcelle) => {
-            //$("#listeParcelle").append("<h2>" + parcelle + "</h2>")
-            console.log("parcelle :");
-            console.log(parcelle.libelle);
-            console.log(parcelle.adresse);
-            console.log(parcelle.champs);
-
             let htmlAffichageChamp = "<ol id='listeChampParcelle'>";
-
+            console.log(parcelle.categorie);
             parcelle.champs.forEach(champ => {
-                console.log(champ.libelle);
                 htmlAffichageChamp += "<li>" + champ.libelle +"</li>";
             });
 

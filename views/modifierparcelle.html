@@ -7,7 +7,7 @@
         </ul>
     </nav>
     <h1>Modifier une parcelle</h1>
-    <h2 id="affichageParcelleSelectionee">Parcelle selectionée : </h2>
+    <h2 id="affichageParcelleSelectionee">Parcelle selectionnée : </h2>
     <div id="conteneur">
         <div id="affichageParcelleModification">
             <ol id="listeParcelle">
@@ -37,7 +37,7 @@
     </div>
 </div>
 <script>
-    //TODO : faire un affichage pour savoir quelle parcelle a été selectionnée
+    //Cette structure permet de stocker la dernière parcelle sélectionnée
     let parcelleSelectionnee = {libelle : "", adresse : ""}
 
     //Action au chargement de la vue
@@ -83,19 +83,21 @@
             $("#listeParcelle").append(`<li class='infoParcelle'>
                 <h2>${parcelle?.toString}</h2>
                 <h4>${parcelle?.adresse?.toString}</h4>
-                <button class="btnModifierParcelle" id="${parcelle?.toString}">Modifier</button>
+                <button class="btnModifierParcelle">Modifier</button>
                 </li>`
             );
-            $(`#${parcelle?.toString}`).on("click", (event) => {
+            $(`.btnModifierParcelle`).on("click", (event) => {
                 $("#affichageParcelleSelectionee").text("Parcelle selectionnée : ");
 
                 let adresse = $(event.target).prev().text();
                 let libelle = $(event.target).prev().prev().text();
-                (adresse,libelle);
+
+                parcelleSelectionnee.libelle = libelle;
+                parcelleSelectionnee.adresse = adresse;
                 
                 $("#formModifierParcelle").css('visibility','visible');
 
-                $("#affichageParcelleSelectionee").text($("#affichageParcelleSelectionee").text() + parcelleSelectionnee.libelle);
+                $("#affichageParcelleSelectionee").text($("#affichageParcelleSelectionee").text() + libelle);
             });
         },
         error: (msg) => {

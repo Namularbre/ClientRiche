@@ -105,16 +105,15 @@
 
     //Cette fonction vérifie que les input de type texte d'un formulaire son bien remplie, sinon elle renvoie false.
     function verifierSiFormulaireEstRempli() {
-        let champsOk = true;
         $(".controleFormulaire").each( (index, controle) => {
             if ($(controle).val() === "") {
-                champsOk = false;
+                return false;
             }
         });
-        if ($("#typeRue").find(":selected").text() == " ---- ") {
-            champsOk = false;
+        if ($("#typeRue").find(":selected").text() == " ---- " || $("#typeRue").find(":selected").text() == undefined) {
+            return false;
         }
-        return champsOk;
+        return true;
     }
 
     //permet de stocker la dernière parcelle choisie

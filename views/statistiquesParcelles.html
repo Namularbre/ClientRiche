@@ -31,13 +31,30 @@
             htmlAffichageChamp += "</ol>";
 
             let htmlAffichageParcelle = "<h2 class='nomParcelle'>" + parcelle.libelle + "</h2>" +
-                                        "<h3 class='adresseParcelle'>" + parcelle.adresse.toString + "</h3>" +
-                                        htmlAffichageChamp;
+                                        "<h3 class='adresseParcelle'>" + parcelle.adresse.toString + "</h3>";
 
-            $("#listeParcelle").append(htmlAffichageParcelle);
+            let htmlAffichageDesProduits = "<ol class='affichageDesProduits'>";
 
-            console.log(parcelle.exploitant.categPrevisions);
-            //console.log(parcelle.categPrevisions/*est un array*/.campagne.categorieProduit); //TODO chopper quantite (dans campagne) et ce qui se rapporche d'un produit,
+            //On vas chercher les produits de la parcelle
+            parcelle.exploitant.categPrevisions.forEach( (categPrevision) => {
+                categPrevision?.categorieProduit?.produits.forEach( (produit) => {
+                    console.log(produit);
+                    htmlAffichageDesProduits += "<li class='affichageProduit'>" + produit + "</li>";
+                });
+            });
+            htmlAffichageDesProduits += "</ol>";
+
+            //On récupère la quantité d'aliments produit dans la parcelle
+            console.log(parcelle.quantite);
+
+            let htmlAffichageQuantite = "<p class='affichageQuantite'>" + parcelle.quantite + "</p>";
+
+            //On créé l'affichage complet d'une parcelle
+            let htmlAffichageGeneral = htmlAffichageParcelle + htmlAffichageChamp + htmlAffichageDesProduits + htmlAffichageQuantite;
+
+            $("#listeParcelle").append(htmlAffichageGeneral);
+
+            //(Note pour mon groupe) : Je suis passé par là :
             //http://vps.e-mingo.net/coopagri/app/index.php?x=1&renderTo=JSON&noAttribute&noLink&serializationDepth=3&c=parcelle&a=trouver&x=1   
         },
         error: (msg) => {

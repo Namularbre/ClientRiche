@@ -1,4 +1,5 @@
 <script src="./script/trouverParcelle.js"></script>
+<script src="./script/supprimerParcelle.js"></script>
 <div id="supprimerParcelle">
     <nav class="retour">
         <ul>
@@ -16,5 +17,31 @@
                 $("body").html(htmlObtenue);
             });
         });
+    });
+
+    $(this).trouverParcelle({
+        user,
+        success : (parcelle) => {
+            $("#listeParcelle").append(`<li class='infoParcelle'>
+                <h2>${parcelle?.toString}</h2>
+                <h4>${parcelle?.adresse?.toString}</h4>
+                <button class="btnSupprimerParcelle">Supprimer</button>`
+            );
+            //Ajout d'un évènement pour supprimer la parcelle
+            $(".btnSupprimerParcelle").on("click", (event) => {
+                $(document).supprimerParcelle({
+                    user,
+                    success : () => {
+                        console.log("ok");
+                    },
+                    error : (msg) => {
+                        console.log(msg);
+                    },
+                });
+            });
+        },
+        error: (msg) => {
+            console.error(msg)
+        }
     });
 </script>

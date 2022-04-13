@@ -30,19 +30,46 @@
             );
             //Ajout d'un évènement pour supprimer la parcelle
             $(".btnSupprimerParcelle").on("click", (event) => {
-                $(document).supprimerParcelle({
-                    user,
-                    success : () => {
-                        console.log("ok");
-                    },
-                    error : (msg) => {
-                        console.log(msg);
-                    },
-                });
+
+                //On demande à l'utilisateur si il est sûr, pour éviter les missclicks
+                if (demanderConfirmation()) {
+                    //On enlève le visuel de la parcelle
+                    supprimerVisuelementParcelle($(event.target));
+                    $(document).supprimerParcelle({
+                        user,
+                        success : () => {
+                            console.log("Parcelle supprimée");
+                        },
+                        error : (msg) => {
+                            console.log(msg);
+                        },
+                    });
+                }
             });
         },
         error: (msg) => {
             console.error(msg)
         }
     });
+    /*
+        Cette fonction sert à supprimer visuellement une parcelle
+    */
+    function supprimerVisuelementParcelle(boutonClique) {
+        console.log(boutonClique);
+        boutonClique.prev().prev().hide();
+        boutonClique.prev().hide();
+        boutonClique.hide();
+    }
+    /*
+        Cette fonction demande la confirmation de la suppression
+    */
+    function demanderConfirmation() {
+        if (confirm('Voulez vous supprimer la parcelle ?')) {
+            return true;
+        } else {
+            alert("Aucune modification ne sera apporté");
+            return false;
+        }
+    }
+
 </script>

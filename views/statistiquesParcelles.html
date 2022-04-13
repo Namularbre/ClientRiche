@@ -32,7 +32,7 @@
 
             let htmlAffichageParcelle = "<h2 class='nomParcelle'>" + parcelle.libelle + "</h2>" +
                                         "<h3 class='adresseParcelle'>" + parcelle.adresse.toString + "</h3>";
-
+            
             let htmlAffichageDesProduits = "<ol class='affichageDesProduits'>";
 
             //On vas chercher les produits de la parcelle
@@ -45,8 +45,6 @@
             htmlAffichageDesProduits += "</ol>";
 
             //On récupère la quantité d'aliments produit dans la parcelle
-            console.log(parcelle.quantite);
-
             let htmlAffichageQuantite = "<p class='affichageQuantite'>" + parcelle.quantite + "</p>";
 
             //On créé l'affichage complet d'une parcelle
